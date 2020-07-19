@@ -1,0 +1,52 @@
+---
+title: ""
+output: 
+  html_document: 
+    keep_md: yes
+---
+<div style="text-align: center">
+# Tooth length versus method of supplement
+#### Made by: Obed Garcia Quiroz
+#### Date: 18/7/2020
+<div/>
+
+<div style="text-align: left">
+This is the solution to the second project of the Developing Data Products course of the data science specialization offered by Johns Hopkins University in coursera. For this project, using the plotly and ggplot2 libraries in RStudio, I made a set of box plots, illustrating the different lengths of guinea pig teeth versus supplement method, using the ToothGrowth data set, present in R.
+<div style="text-align: left">
+
+<div/>
+
+```{r, fig.width = 9.5,message = FALSE, echo=FALSE}
+library(ggplot2)
+library(plotly)
+data("ToothGrowth")
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+tl_vs_st <- ggplot(aes(x = dose, y = len), data = ToothGrowth)+ facet_grid(~ supp)
+tl_vs_st <- tl_vs_st + geom_boxplot(aes(fill = dose)) + theme_bw()
+tl_vs_st <- tl_vs_st + ggtitle("Tooth length versus method of supplement")
+tl_vs_st <- tl_vs_st + xlab("Supplement type") + ylab("Tooth Length")
+tl_vs_st <- tl_vs_st + theme(plot.title = element_text(face = "bold",vjust = 3, hjust = 0.5))
+plot <- ggplotly(tl_vs_st)
+plot
+```
+
+<div/>
+<div style="text-align: center"> 
+Below you can see the code with which the map was created
+
+<div/>
+<div style="text-align: left">
+```{r, fig.width = 9.5, message = FALSE,echo=TRUE,results='hide'}
+library(ggplot2)
+library(plotly)
+data("ToothGrowth")
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+tl_vs_st <- ggplot(aes(x = dose, y = len), data = ToothGrowth)+ facet_grid(~ supp)
+tl_vs_st <- tl_vs_st + geom_boxplot(aes(fill = dose)) + theme_bw()
+tl_vs_st <- tl_vs_st + ggtitle("Tooth length versus method of supplement")
+tl_vs_st <- tl_vs_st + xlab("Supplement type") + ylab("Tooth Length")
+tl_vs_st <- tl_vs_st + theme(plot.title = element_text(face = "bold",vjust = 3, hjust = 0.5))
+plot <- ggplotly(tl_vs_st)
+plot
+```
+<div/>
